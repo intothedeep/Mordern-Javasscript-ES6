@@ -157,3 +157,71 @@ function add(first, second = first) {
 console.log(add(1, 1)); // 2
 console.log(add(1)); // 2
 ```
+
+### 3.1.5 TDZ에서의 매개변수 기본값
+
+TDZ: Temporal Dead Zone
+**let 선언과 유사하게 초기화 이전에 매개변수를 기본값으로 다음 인자를 호출해 사용할 수 없다!**
+```js
+function getValue(value) {
+  return value + 5;
+}
+
+function add(first = getValue(second), second) {
+  return first + second;
+}
+console.log(add(1, 1)); // 2
+console.log(add(undefined, 1)); // 에러 발생
+```
+let 바인딩과 유사하게 동작
+
+## 3.2 이름을 명시하지 않은 매개변수 다루기
+```js
+
+// object에서 필요한 프로퍼티만 가져오는 함수
+// like Underscore.js 라이브러리의 pick() method
+function pick(object) {
+  let result = Object.create(null); // {}
+  
+  // 두 번째 매개변수에서 시작 arguments[1~]
+  for (let i = 1, len = arguments.length; i < len; i++) {
+    result[arguments[i]] = object[arguments[i]];
+  }
+  
+  return result;
+}
+
+let book = {
+  title: "Understanding ECMAScript 6",
+  author: "Nicholas C. Zakas",
+  year: 2016
+};
+
+let bookData = pick(book, "author", "year");
+console.log(bookData.author); //  "Nicholas C. Zakas"
+console.log(bookData.year); // 2016
+console.log(bookData.title); // undefined
+
+```
+매개변수를 하나 이상 처리할 수 있다는 부분이 명확x
+
+arguments[1]부터 탐색...
+
+### 3.2.2 나머지 매개변수
+__ECMA6__ 
+**나머지 매개변수: ** ...
+```js
+function pick(object, ...keys) {
+  let result = Object.create(null); // {}
+  
+  // 두 번째 매개변수에서 시작 arguments[1~]
+  for (let i = 0, len = keys.length; i < len; i++) {
+    result[keys[i]] = object[keys[i]];
+  }
+  
+  return result;
+}
+```
+이렇게 사용할 수 있다.
+
+***!주의사항: 나머지 매개변수는 함수 선언에 명시한 매개변수의 수를 나타내는 함수의 length 프로퍼티에 영향을 주지 않는다. 이 예제에서 pick()의 length 값은 object만 포함하기 때문에 1이다.***

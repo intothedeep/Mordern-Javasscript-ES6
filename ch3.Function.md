@@ -61,7 +61,8 @@ makeRequest("/foo", null, function(body) {
 ### 3.1.3 매개변수 기본값이 arguments 객체에 미치는 영향
 매개변수 기본값이 존재할 때 arguments 객체는 다르게 동작한다.
 __ECMA5__
-__non-strict__: arguments 객체는 매개변수가 변경되면 함께 변경된다.
+
+__non-strict 모드__: arguments 객체는 매개변수가 변경되면 함께 변경된다.
 ```js
 function mixArgs(first, second) {
   console.log(first === arguments[0]);
@@ -81,7 +82,8 @@ true
 true
 true
 ```
-__strict__: arguments 객체는 매개변수가 변경되어도 변경x ("use strict";를 사용했을 때)
+
+__strict 모드__: arguments 객체는 매개변수가 변경되어도 변경x ("use strict";를 사용했을 때)
 ```txt
 //출력결과
 true
@@ -89,3 +91,39 @@ true
 false
 false
 ```
+
+
+__ECMA6__
+ECMA5 strict 모드와 동일하게 동작한다.
+***매개변수 기본값의 존재는 arguments 객체를 매개변수로부터 분리한다.***
+```js
+// mixArgs("a")만 호출 했을 때!
+function mixArgs(first, second = "b") {
+  console.log(arguments.length); // 1
+  console.log(first === arguments[0]); // true
+  console.log(second === arguments[1]); // false, why? arguments[1] is "undefined"
+  first = "c";
+  second = "d";
+  console.log(first === arguments[0]); // false
+  console.log(second === arguments[1]); // false
+}
+
+mixArgs("a");
+```
+
+### 3.1.4 매개변수 기본값 표현식
+primitive value, 함수, 객체를 매개변수 기본값으로 사용가능하다.
+
+```js
+function getValue() {
+  return 5;
+}
+
+function add(first, second = getValue()) {
+  return first + second;
+}
+console.log(add(1, 1)); // 2
+console.log(add(1)); // 6
+```
+***!주의사항: 두 번째 인자없이 add()가 호출 됐을 때만 getValue()가 호출된다.***
+

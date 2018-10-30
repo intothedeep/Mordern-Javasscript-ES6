@@ -627,3 +627,80 @@ function doSomething() {
 }
 ```
 
+__ECMA5__
+- 꼬치호출 처리: 일반적인 함수 호출과 동일하게 처리
+- 함수 호출을 나타내기 위하여 호출 스택에 새로운 ㅅ택 프레임을 만들고 추가 >> 메모리 문제 발생
+
+### 3.9.1 ECMAScript 6 꼬리 호출의 차이점
+- strict 모드
+- 특정 꼬리 호출을 위한 호출 스택의 크기를 줄인다.
+- Thus, 다음의 조건을 만족하면 꼬리 호출을 위한 새로운 스택 프레임을 만드는 대신 현재 스택 프레임을 지우고 재사용 한다.
+  - __꼬리 호출이 현재 스택 프레임 변수에 접근하지 않음(함수가 클로저가 아님을 의미)
+  - __꼬리 호출을 만다는 함수가 꼬리 호출 반환 후에 남은 작업이 없음
+  - __꼬리 호출의 결과가 함수의 값으로서 반환됨
+  
+```js
+"use strict";
+
+function doSomething() {
+ // 최적화 됨
+ return doSomeThingElse(); // 꼬리 호출
+}
+```
+- doSomething() 함수는 doSomethingElse()로 꼬리 **호출을 하고, 결과를 바로 반환하고, 지역 스코프의 변수에 접근하지 않는다.**
+
+```js
+"use strict";
+
+function doSomething() {
+ // 최적화되지 않음 - 반환 값 없음
+ doSomeThingElse();
+}
+
+function doSomething() {
+ // 최적화되지 않음 - 꼬리 호출 후 명령을 수행하고 있다 1 + ~~
+ return 1 + doSomeThingElse();
+}
+
+function doSomething() {
+ // 최적화되지 않음 - 마지막 위치가 아닌 곳에서 호출
+ var result = doSomeThingElse();
+ return result;
+}
+
+// 클로저는 꼬리 호출 최적화 시키기 어렵다!!!! why?
+// 클로저는 감싸는 곳의 변수에 접근하기 때문에 꼬리 호출 최적화는 작동하지 않는다.
+function doSomething() {
+ var num = 1, func = () => {};
+
+ // 최적화되지 않음 - 함수가 클로저로 동작, doSomething()의 arguements 객체에 접근....
+ return func(); 
+}
+```
+
+### 3.9.2 꼬리 호출 최적화를 이용하는 방법
+- 내부적으로 동작, 함수 최적화하려 시도하지 않는 한 고민할 필요 없다.
+- 주로 재귀 함수에서 사용
+
+```js
+function factorial(n) {
+ if(n <= 1)
+  return 1;
+ else
+  return n * factorial(n -1); // 최적화 X, 꼬리 호출 후 n * ~ 연살 실행 >> 새로운 스택... 최적화 실패!
+}
+
+// 최적화 된 재귀 함수
+function factorial(n, p = 1) {
+ if(n <= 1)
+  return 1 * p;
+ else {
+  let result = n * p;
+  return factorial(n -1, result); // 최적화 X, 꼬리 호출 후 n * ~ 연살 실행 >> 새로운 스택... 최적화 실패!
+ }
+}
+```
+- 참고!: 꼬리 호출 최적화에 관한 논의 진행! ECMAScript 8에 반영 예정 (ECMAScript 2017)
+
+## 3.10 요약
+- 쉽게 사용하기 위한 기능 개선이 많았다.

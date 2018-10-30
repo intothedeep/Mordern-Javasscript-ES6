@@ -50,18 +50,11 @@ function makeRequest(url, timeout = 2000, callback) {
 ```
 이 함수 같은 경우는 두 번째 인자를 전달하지 않거나 명시적으로 undefined로 전달했을 때에만 사용될 것이다.
 ***주의사항**
+__null__ 값은 유효한 값
 ```js
-function makeRequest(url, timeout = 2000, callback = function (){}) {
-
-  // 나머지
-  
-}
+makeRequest("/foo", null, function(body) {
+  doSomething(body);
+});
+// null은 유효한 값으로 간주되어 timeout의 매개변수 기본값은 사용하지 않는다.
 ```
-함수의 선언 시 인자의 위치에 관계없이 모든 인자에 기본 값을 명시할 수 있다.
-```js
-function makeRequest(url, timeout = 2000, callback) {
 
-  // 나머지
-  
-}
-₩₩₩

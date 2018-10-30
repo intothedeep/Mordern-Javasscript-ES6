@@ -225,3 +225,21 @@ function pick(object, ...keys) {
 이렇게 사용할 수 있다.
 
 ***!주의사항: 나머지 매개변수는 함수 선언에 명시한 매개변수의 수를 나타내는 함수의 length 프로퍼티에 영향을 주지 않는다. 이 예제에서 pick()의 length 값은 object만 포함하기 때문에 1이다.***
+
+**나머지 매개변수의 제한**:
+* 무조건 하나여야 한다.
+* 마지막 위치에만 사용할 수 있다.
+
+**나머지 매개변수가 arguments 객체에 미치는 영향**
+* 나머지 매개변수와 상관없이 arguments 객체는 함수에 전달된 인자를 항상 정확하게 반영한다.
+
+## 3.3 Function 생성자의 확장된 역활
+```js
+var add = new Function("first", "second", "return first + second");
+var add = new Function("first", "second = first", "return first + second");
+var add = new Function("...args", "return args[0]");
+```
+## 3.4 전개 연산자
+전개 연산자: spread operator
+
+

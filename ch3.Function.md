@@ -348,8 +348,8 @@ var notAPerson = Person.call(person, "dio"); // 정살 실행
 ### 3.6.2 new.target 메타 프로퍼티
 __new.target__
 - 작동원리
---  [[Construct]]가 호출되면 new.target에는 new 연산자의 실행대상이 할당
---  [[Call]]이 호출되면 new.target은 undefined
+⋅⋅⋅* [[Construct]]가 호출되면 new.target에는 new 연산자의 실행대상이 할당
+⋅⋅⋅*  [[Call]]이 호출되면 new.target은 undefined
 
 
 

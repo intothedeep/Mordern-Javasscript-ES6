@@ -1,5 +1,5 @@
 
-# 3 Function
+# 3. Function
 
 ```js
 function () {

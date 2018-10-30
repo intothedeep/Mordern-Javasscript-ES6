@@ -617,3 +617,6 @@ console.log(boundSum()); // 3
 ```
 
 ## 3.9 꼬리 호출 최적화
+- [꼬리 호출 최적화 관련 동영상](https://www.youtube.com/watch?v=h80tLv0fn88&t=348s)
+
+

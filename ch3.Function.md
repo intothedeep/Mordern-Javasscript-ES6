@@ -330,6 +330,7 @@ var notAPerson = Person("victor"); // error 발생
 - this 값을 사용하여 인자가 생성자의 인스턴스인지 확인하고, 만약 그렇다면 계속 실행한다. 그리고 this가 Person의 인스턴스가 아니라면 에러를 발생시킨다.
 - 이런한 접근이 가능한 이유는 [[Construct]] 메서드가 Person의 새로운 인스턴스를 만들어 this에 할당하기 때문에 동작함
 - ~~하지만 아래 예제의 경우처럼 this가 new를 사용하지 않고도 Person의 인스턴스가 될 수 있기 때문에 이 접근법은 불완전~~
+
 ```js
 function Person(name) {
  if (this instanceof Person) {
@@ -342,18 +343,109 @@ function Person(name) {
 var person = new Person("victor");
 var notAPerson = Person.call(person, "dio"); // 정살 실행
 ```
+
 - Person.call()은 person 변수를 첫 번째 인자로 전달하여 Person 함수 내부의 this에 person을 설정한다.
 - 결국, person 함수에서 person 인스턴스가 new? Person.apply()? 무었을 통해 호출 되었는지 확인 불가능!
 
 ### 3.6.2 new.target 메타 프로퍼티
 __new.target__
 - 작동원리
-- - [[Construct]]가 호출되면 new.target에는 new 연산자의 실행대상이 할당
-- - [[Call]]이 호출되면 new.target은 undefined
+ - [[Construct]]가 호출되면 new.target에는 new 연산자의 실행대상이 할당
+ - [[Call]]이 호출되면 new.target은 undefined
 
+- new.target 사용
+```js
+function Person(name) {
+ if (new.target === Person) {
+  this.name = name;
+ } else {
+  throw new Error("You must use new with Person");
+ }
+}
 
+var person = new Person("victor");
+var notAPerson = Person.call(person, "dio"); // ~~정살 실행 x~~, 에러 발생!
+```
 
+- new.target으로 호출한 특정 생성자 확인하기
 
+```js
+function Person(name) {
+ if (this instanceof Person) {
+  this.name = name;
+ } else {
+  throw new Error("You must use new with Person");
+ }
+}
 
+function AnotherPerson(name) {
+ Person.call(this, name);
+}
+
+var person = new Person("victor");
+var anotherPerson = new AnotherPerson("dio"); // 에러 발생! [[Construct]]를 사용하지 않고 [[Call]] 메서드 사용
+```
+* 에러가 나는 이유
+ * new.target이 Person이어야 한다. 그런데 AnotherPerson 내부에서 Person의 call()을 사용해 호출하고 있으니 new.target은 undefined
+ * 에러 발생!
+ 
+## 3.7 블록 레벨 함수
+
+```js
+"use strict";
+if (true) {
+ // es5에서는 문법 에러가 발생, es6에서는 발생하지 않음
+ function doSomething() {
+  //...
+ }
+ //...
+}
+```
+- 에러가 맞지만 사용되고 있었는데 es6에서는 doSomthing()을 블록 레벨 선언으로 간주, 블록 내에서만 접근 및 호출 가능하게 만듬
+
+### 3.7.1 블록 레벨 함수의 사용 시기
+- 블록 레벨 함수는 정의된 블록 밖에서는 제거 된다는 점에서 let 함수의 표현식과 동일
+- 차이점
+ - 블록 레벨 함수는 최상단으로 호이스팅
+ - let 함수 표현식은 x
+
+```js
+"use strict";
+
+if (true) {
+ console.log(typeof doSomething) // "function"
+ function doSomething() { }
+}
+
+if (true) {
+ console.log(typeof doSomething); // 에러 발생!
+
+let doSomething = function () { }
+}
+```
+
+### 3.7.2 Non-Strict 모드의 블록 레벨 함수
+
+```js
+// ECMAScript 6 non-strict 모드
+
+if (true) {
+ console.log(typeof doSomething) // "function"
+ function doSomething() { }
+}
+
+ console.log(typeof doSomething) // "function"
+
+```
+- 블록 내부 뿐 아니라 전역에서도 최상단으로 doSomething이 호이스팅 되어 블록 밖에서도 호출 가능하다.
+ - 이유 기본에 호환되지 않는 브라우저 동작들을 제거하기 위해 이러한 동작을 표준화했음
+
+## 3.8 화살표 함수
+__=>__ 을 사용해 표현
+
+- 기존 자바스크립트 함수와 다른점
+ - this와 super, arguments, new.target 바인딩
+  1. 함수 내에서 this와 super, arguments, new.target의 값은 그 화살표 함수를 가장 근접하게 둘러싸고 있는 일반함수에 의해 정의
+ - 
 
 

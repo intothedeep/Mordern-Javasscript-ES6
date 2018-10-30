@@ -619,4 +619,11 @@ console.log(boundSum()); // 3
 ## 3.9 꼬리 호출 최적화
 - [꼬리 호출 최적화 관련 동영상](https://www.youtube.com/watch?v=h80tLv0fn88&t=348s)
 
+- ECMA6 함수의 가장 흥미로운 변화: 꼬리 호출 시스템을 변경하는 엔진 최적화
+__꼬리 호출__: 함수가 다른 함수의 마지막에 호출될 때를 말한다.
+```js
+function doSomething() {
+ return doSomeThingElse(); // 꼬리 호출
+}
+```
 

@@ -525,4 +525,95 @@ let person = (
 console.log(person.getname()); // "victor"
 ```
 
+### 3.8.3 No this 바인딩
 
+```js
+let PageHandler = {
+ id: "7777777",
+ 
+ init: function() {
+  document.addEventListener("click", function(event) {
+   this.doSomething(event.type); // 에러 발생! why? this가 객체에 묶인 것이 아닌 event에 바인딩 되어 있음!
+  }, false);
+ },
+ 
+ doSomething: function(type) {
+  console.log("Handling " + type + " for " + this.id);
+ }
+ 
+};
+
+// bind()를 사용해 해결
+let PageHandler = {
+ id: "7777777",
+ 
+ init: function() {
+  document.addEventListener("click", (function(event) {
+   this.doSomething(event.type); // 에러 발생! why? this가 객체에 묶인 것이 아닌 event에 바인딩 되어 있음!
+  }).bind(this), false); // function 밖에 있는 객체로 this를 바인딩 시켜줌
+ },
+ 
+ doSomething: function(type) {
+  console.log("Handling " + type + " for " + this.id);
+ }
+ 
+};
+
+// 화살표 함수
+// 화살표 함수는 this 바인딩을 하지 않으므로, 화살표 함수 내 this 값은 스코프 체인을 통해서만 결정된다.
+// 만약, 화살표 함수 in 일반 함수 >> this 값은 화살표 함수를 감싸는 함수에서의 값과 같을 것이고, 
+// not in 일반 함수 >> 전역 스코프의 this 값과 같다.
+let PageHandler = {
+ id: "7777777",
+ 
+ init: function() {
+  // this의 값은 init 내의 값과 같고 bind(this)를 사용한 것과 비슷하게 동작
+  // doSomething은 반환값이 없지만 함수 본문 안에 실행문만 있기에 중괄호로 감쌀 필요가 없다.
+  document.addEventListener("click", event => this.doSomething(event.type), false); 
+ },
+ 
+ doSomething: function(type) {
+  console.log("Handling " + type + " for " + this.id);
+ }
+ 
+};
+
+```
+* [prototype 프로퍼티](https://medium.com/@bluesh55/javascript-prototype-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-f8e67c286b67)
+- 화살표 함수는 __일회성__, 새로운 함수를 정의하기 위해 사용 X
+   - 이는 보통 함수에 있는 prototype 프로퍼티가 없음
+```js
+var arrow = () => {}, 
+    obj = new arrow(); // 에러 발생! No [[Constructor]]
+```
+
+### 3.8.5 No arguments 바인딩
+- 화살표 함수 has no arguments object, but
+- 화살표 함수 can access to mother function's arguments object
+
+```js
+function args() {
+ // args() 함수의 arugments 객체를 전달 받아 사용
+ return () => arguments[0];
+}
+
+var arrow = args(5);
+console.log(arrow()); // 5
+```
+
+### 3.8.6 화살표 함수 식별하기
+- typeof 화살표 함수 // "Function"
+- 화살표 함수 instanceof Function // true
+- call(), bind(), apply() 사용 가능 // 단, this 바인딩은 변하지 않음
+
+```js
+var sum = (a, b) => a + b;
+
+console.log(sum.call(null, 1, 2)); // 3
+console.log(sum.apply(null, [1, 2])); // 3
+
+var boundSum = sum.bind(null, 1, 2);
+console.log(boundSum()); // 3 
+```
+
+## 3.9 꼬리 호출 최적화

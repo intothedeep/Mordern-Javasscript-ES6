@@ -309,6 +309,51 @@ console.log(notAPerson); // "undefined"
 - 대문자로 시작하는 Person은 자바스크립트 프로그래밍에서 보통 new를 사용해 호출하는 함수를 가리킨다.
 -- 이러한 함수의 이중적인 역할은 혼란을 일으킬 수 있기 때문에 es6에서는 몇 가지 개선이 이루어 졌다.
 
-**자바스크립트 함수에는 [[call]]과 [[Construct]]라는 두 가지 다른 내부 전용 메서드가 있다. **
-- 함수를 new 없이 호출하면
+**자바스크립트 함수에는 [[call]]과 [[Construct]]라는 두 가지 다른 내부 전용 메서드가 있다.**
+- 함수를 new 없이 호출하면 call 호출
+- 함수를 new와 함께 호출하면 construct 호출 // construct 메소드를 가진 함수를 생성자라고 한다.
+
+### 3.6.1 ECMAScript 5에서 함수 호출 방식을 결정하는 요인
+- __instaceof__ 사용
+```js
+function Person(name) {
+ if (this instanceof Person) {
+  this.name = name;
+ } else {
+  throw new Error("You must use new with Person");
+ }
+}
+
+var person = new Person("victor");
+var notAPerson = Person("victor"); // error 발생
+```
+- this 값을 사용하여 인자가 생성자의 인스턴스인지 확인하고, 만약 그렇다면 계속 실행한다. 그리고 this가 Person의 인스턴스가 아니라면 에러를 발생시킨다.
+- 이런한 접근이 가능한 이유는 [[Construct]] 메서드가 Person의 새로운 인스턴스를 만들어 this에 할당하기 때문에 동작함
+- ~~하지만 아래 예제의 경우처럼 this가 new를 사용하지 않고도 Person의 인스턴스가 될 수 있기 때문에 이 접근법은 불완전~~
+```js
+function Person(name) {
+ if (this instanceof Person) {
+  this.name = name;
+ } else {
+  throw new Error("You must use new with Person");
+ }
+}
+
+var person = new Person("victor");
+var notAPerson = Person.call(person, "dio"); // 정살 실행
+```
+- Person.call()은 person 변수를 첫 번째 인자로 전달하여 Person 함수 내부의 this에 person을 설정한다.
+- 결국, person 함수에서 person 인스턴스가 new? Person.apply()? 무었을 통해 호출 되었는지 확인 불가능!
+
+### 3.6.2 new.target 메타 프로퍼티
+__new.target__
+- 작동원리
+--  [[Construct]]가 호출되면 new.target에는 new 연산자의 실행대상이 할당
+--  [[Call]]이 호출되면 new.target은 undefined
+
+
+
+
+
+
 

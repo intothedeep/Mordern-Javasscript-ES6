@@ -61,7 +61,7 @@ makeRequest("/foo", null, function(body) {
 ### 3.1.3 매개변수 기본값이 arguments 객체에 미치는 영향
 매개변수 기본값이 존재할 때 arguments 객체는 다르게 동작한다.
 __ECMA5__
-non-strict: arguments 객체는 매개변수가 변경되면 함께 변경된다.
+__non-strict__: arguments 객체는 매개변수가 변경되면 함께 변경된다.
 ```js
 function mixArgs(first, second) {
   console.log(first === arguments[0]);
@@ -69,7 +69,7 @@ function mixArgs(first, second) {
   first = "c";
   second = "d";
   console.log(first === arguments[0]);
-  console.log(second === arguemtns[1]);
+  console.log(second === arguments[1]);
 }
 
 mixArgs("a", "b");
@@ -80,4 +80,12 @@ true
 true
 true
 true
+```
+__strict__: arguments 객체는 매개변수가 변경되어도 변경x ("use strict";를 사용했을 때)
+```txt
+//출력결과
+true
+true
+false
+false
 ```

@@ -307,7 +307,7 @@ console.log(notAPerson); // "undefined"
 ```
 - notAPerson을 만들 때 new 없이 호출하면 undefined를 반환한다.
 - 대문자로 시작하는 Person은 자바스크립트 프로그래밍에서 보통 new를 사용해 호출하는 함수를 가리킨다.
--- 이러한 함수의 이중적인 역할은 혼란을 일으킬 수 있기 때문에 es6에서는 몇 가지 개선이 이루어 졌다.
+  - 이러한 함수의 이중적인 역할은 혼란을 일으킬 수 있기 때문에 es6에서는 몇 가지 개선이 이루어 졌다.
 
 **자바스크립트 함수에는 [[call]]과 [[Construct]]라는 두 가지 다른 내부 전용 메서드가 있다.**
 - 함수를 new 없이 호출하면 call 호출
@@ -350,8 +350,8 @@ var notAPerson = Person.call(person, "dio"); // 정살 실행
 ### 3.6.2 new.target 메타 프로퍼티
 __new.target__
 - 작동원리
- - [[Construct]]가 호출되면 new.target에는 new 연산자의 실행대상이 할당
- - [[Call]]이 호출되면 new.target은 undefined
+  - [[Construct]]가 호출되면 new.target에는 new 연산자의 실행대상이 할당
+  - [[Call]]이 호출되면 new.target은 undefined
 
 - new.target 사용
 ```js
@@ -406,8 +406,8 @@ if (true) {
 ### 3.7.1 블록 레벨 함수의 사용 시기
 - 블록 레벨 함수는 정의된 블록 밖에서는 제거 된다는 점에서 let 함수의 표현식과 동일
 - 차이점
- - 블록 레벨 함수는 최상단으로 호이스팅
- - let 함수 표현식은 x
+  - 블록 레벨 함수는 최상단으로 호이스팅
+  - let 함수 표현식은 x
 
 ```js
 "use strict";
@@ -444,8 +444,8 @@ if (true) {
 __=>__ 을 사용해 표현
 
 - 기존 자바스크립트 함수와 다른점
- - this와 super, arguments, new.target 바인딩
-  1. 함수 내에서 this와 super, arguments, new.target의 값은 그 화살표 함수를 가장 근접하게 둘러싸고 있는 일반함수에 의해 정의
- - 
+   1. this와 super, arguments, new.target 바인딩
+     - 함수 내에서 this와 super, arguments, new.target의 값은 그 화살표 함수를 가장 근접하게 둘러싸고 있는 일반함수에 의해 정의
+   3. 
 
 

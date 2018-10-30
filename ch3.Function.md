@@ -122,8 +122,38 @@ function getValue() {
 function add(first, second = getValue()) {
   return first + second;
 }
+
 console.log(add(1, 1)); // 2
 console.log(add(1)); // 6
 ```
 ***!주의사항: 두 번째 인자없이 add()가 호출 됐을 때만 getValue()가 호출된다.***
 
+```js
+let value = 5;
+
+function getValue() {
+  return value++;
+}
+
+function add(first, second = getValue()) {
+  return first + second;
+}
+
+console.log(add(1, 1)); // 2
+console.log(add(1)); // 6
+console.log(add(1)); // 7
+```
+***처음 add()를 호출 했을 때는 getValue()를 호출하지 않았다.***
+
+**나중에 선언 된 매개변수의 개본값으로 먼저 선언된 인자를 사용할 수 있다. !단, *** 반대는 불가능 *** **
+```js
+function getValue() {
+  return 5;
+}
+
+function add(first, second = first) {
+  return first + second;
+}
+console.log(add(1, 1)); // 2
+console.log(add(1)); // 2
+```

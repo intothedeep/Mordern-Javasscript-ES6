@@ -1,4 +1,4 @@
-# Mordern Javasscript ES6
+# Mordern Javascript ES6
 
 
 This is about studying Modern Javascript ECMA6!

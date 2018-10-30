@@ -444,8 +444,15 @@ if (true) {
 __=>__ 을 사용해 표현
 
 - 기존 자바스크립트 함수와 다른점
-   1. this와 super, arguments, new.target 바인딩
-     - 함수 내에서 this와 super, arguments, new.target의 값은 그 화살표 함수를 가장 근접하게 둘러싸고 있는 일반함수에 의해 정의
-   3. 
+   1. this와 super, arguments, new.target 바인딩:
+      - 함수 내에서 this와 super, arguments, new.target의 값은 그 화살표 함수를 가장 근접하게 둘러싸고 있는 일반함수에 의해 정의
+   2. new를 사용할 수 없음:
+      - [[Construct]] 메소드가 없어 생성자로 사용 불가능, 사용 시 Error 발생
+   3. 프로토 타입 없음:
+      - new를 사용할 수 없기 때문에 프로토타입이 필요 없음. 화살표 함수에는 prototype 프로퍼티가 없다.
+   4. this를 변경할 수 없음:
+      - 함수 내부의 this 변경 X. this 값은 함수 전체 생명 주기 내내 같은 값
+   5. arguments 객체 없음:
+      - 
 
 

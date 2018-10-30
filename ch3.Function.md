@@ -285,4 +285,6 @@ var descriptor = Object.getOwnPropertyDescriptor(person, "firstName");
 console.log(descriptor.get.name); // "get firstName"
 
 ```
-(Object.getOwnPropertyDescriptor())[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor]
+**!참고: **[Object.getOwnPropertyDescriptor()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor)
+
+

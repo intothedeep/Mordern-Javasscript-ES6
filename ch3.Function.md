@@ -241,5 +241,20 @@ var add = new Function("...args", "return args[0]");
 ```
 ## 3.4 전개 연산자
 전개 연산자: spread operator
+```js
+let values = [25, 50, 75, 100];
+console.log(Math.max.apply(Math, values)); // 100
+console.log(Math.max(...values)); // 100 
 
+values = [-20, -50, -75, -100];
+console.log(Math.max(...values, 0)); // 0
 
+```
+
+**
+ECMA6 나머지 연산자를 사용하면 복잡한 this 바인딩(Math.max.apply())를 사용할 필요가 없다.
+또한, 나머지 연산자를 다른 인자와 사용할 수 있다.
+**
+use Rest parameters other than apply()~~~
+
+## 3.5 name 프로퍼티

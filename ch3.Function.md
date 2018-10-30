@@ -453,6 +453,76 @@ __=>__ 을 사용해 표현
    4. this를 변경할 수 없음:
       - 함수 내부의 this 변경 X. this 값은 함수 전체 생명 주기 내내 같은 값
    5. arguments 객체 없음:
-      - 
+      - arguments 바인딩이 없음. 명시한 매개변수와 ...(나머지) 매개변수만 사용가능
+   6. 같은 이름의 매개변수를 중복하여 사용 불가능:
+      - 기존: strict에서만 중복 사용 X
+      - 화살표: **non 및 strict** 중복 사용 x
+
+**이유:** this 바인딩이 자바스크립트 에러의 주요 원인 >> 최적화 가능
+
+### 3.8.1 화살표 함수 문법
+
+```js
+var reflect = value => value;
+var reflect = function(value) {
+ return value;
+}
+
+// 인자 2개 이상
+var sum = (a, b) => a + b;
+var sum = function(a, b) {
+ return a + b;
+};
+
+// 인자 없을 때
+var getName = () => "Egotistical Bastard";
+
+// 하나 이상의 표현식
+var sum = function(a, b) {
+ console.log(a + b);
+ return a + b;
+};
+
+// 아무것도 하지 않는 함수
+var nothing = () => {};
+var nothing = function() {};
+
+// 객체 리터럴을 반환 할 시 ()로 감싸야 한다. 
+var getTempItem = id => ({ id: id, name: "Temp"});
+var getTempItem = function(id) {
+ return {
+  id: id,
+  name: "bastard"
+ };
+};
+
+```
+
+### 3.8.2 즉시 실행 함수 표현식 만들기
+
+```js
+let person = function(name) {
+ return {
+  getName: function() {
+   return name;
+  }
+ };
+}("victor");
+
+console.log(person.getname()); // "victor"
+
+let person = (
+ (name) => {
+  return {
+   getName: function() {
+    return name;
+   }
+  };
+ }
+) // ()가 화살표 함수 정의 부분만 감싸고 있다.
+("victor");
+
+console.log(person.getname()); // "victor"
+```
 
 

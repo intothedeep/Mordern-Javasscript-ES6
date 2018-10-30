@@ -259,3 +259,30 @@ ECMA6 나머지 연산자를 사용하면 복잡한 this 바인딩(Math.max.appl
 use Rest parameters other than apply()~~~
 
 ## 3.5 name 프로퍼티
+__for Trace or Debuging__ 자바스크립트에서 함수 식별의 어려움 >> __name__ porperty 추가
+
+### 3.5.1 적절한 이름 선택하기
+```js
+function doSomething() { }
+var doAnotherThing = function() { }
+var a = function b() { }
+
+console.log(doSomething.name); // doSomething
+console.log(doAnotherThing.name); // doAnotherThing
+console.log(a.name) // b
+
+var person = {
+ get firstName(){
+  return "Nicholas";
+ },
+ sayName: function() {
+  console.log(this.name);
+ }
+};
+console.log(person.sayName.name); // "sayName"
+
+var descriptor = Object.getOwnPropertyDescriptor(person, "firstName");
+console.log(descriptor.get.name); // "get firstName"
+
+```
+Object.getOwnPropertyDescriptor()<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor>

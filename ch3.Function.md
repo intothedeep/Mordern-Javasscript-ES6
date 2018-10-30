@@ -284,7 +284,28 @@ console.log(person.sayName.name); // "sayName"
 var descriptor = Object.getOwnPropertyDescriptor(person, "firstName");
 console.log(descriptor.get.name); // "get firstName"
 
+var c = function() {};
+console.log(c.bind.name); // "bound c", bind()를 사용해 만든 함수는 이름 앞에 "bound"와 공백이 붙는다.
+console.log((new Function()).name); // Function 생성자를 이용해 만든 함수는 "anonymous"이다.
+
 ```
-**!참고: **[Object.getOwnPropertyDescriptor()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor)
+참고: [Object.getOwnPropertyDescriptor()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor)
+
+**getter**와 **setter**는 get과 set을 앞에 붙이고 반환할 때에는 Object.getOwnPropertyDescriptor()를 사용하여 반환해야 한다.
+
+## 3.6 함수의 두 가지 용도를 명확히 하기
+```js
+function Person(name) {
+ this.name = name;
+}
+
+var person = new Person("Nicholas");
+var notAPerson = Person("Nicholas");
+
+console.log(person); // "[Object object]"
+console.log(notAPerson); // "undefined"
+```
+- notAPerson을 만들 때 new 없이 호출하면 undefined를 반환한다.
+- 대문자로 시작하는 Person은 자바스크립트 프로그래밍에서 보통 new를 사용해 호출하는 함수를 가리킨다.
 
 

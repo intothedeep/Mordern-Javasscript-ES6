@@ -4,4 +4,4 @@ Javascript, ECMA6, ES6, Modern Javascript, 모던 자바스크립트, 스터디,
 
 This is about studying Modern Javascript ECMA6!
 
-#### ch3 Function [`Function`](./.md#dispatch)
+#### ch3 [`Function`](./.md#ch3.Function)

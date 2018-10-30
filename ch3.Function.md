@@ -49,7 +49,8 @@ function makeRequest(url, timeout = 2000, callback) {
 }
 ```
 이 함수 같은 경우는 두 번째 인자를 전달하지 않거나 명시적으로 undefined로 전달했을 때에만 사용될 것이다.
-***주의사항**
+
+* **주의사항**
 __null__ 값은 유효한 값
 ```js
 makeRequest("/foo", null, function(body) {
@@ -57,4 +58,5 @@ makeRequest("/foo", null, function(body) {
 });
 // null은 유효한 값으로 간주되어 timeout의 매개변수 기본값은 사용하지 않는다.
 ```
-
+### 3.1.3 매개변수 기본값이 arguments 객체에 미치는 영향
+매개변수 기본값이 존재할 때 arguments 객체는 다르게 동작한다.

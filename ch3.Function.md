@@ -4,6 +4,33 @@
   * [3.1 함수의 매개변수 기본값](#3-1)
     * [3.1.1 ECMAScript 5의 매개변수 기본값](#3-1-1)
     * [3.1.2 ECMAScript 6의 매개변수 기본값](#3-1-2)
+    * [3.1.3 매개변수 기본값이 arguments 객체에 미치는 영향](#3-1-3)
+    * [3.1.4 매개변수 기본값 표현식](#3-1-4)
+    * [3.1.5 TDZ에서의 매개변수 기본값](#3-1-5)
+  * [3.2 이름을 명시하지 않은 매개변수 다루기](#3-2)
+    * [3.2.1 ECMAScript 5에서의 이름을 명시하지 않은 매개변수](#3-2-1)
+    * [3.2.2 나머지 매개변수](#3-2-2)
+  * [3.3 Function 생성자의 확장된 역활](#3-3)
+  * [3.4 전개 연산자](#3-4)
+  * [3.5 name 프로퍼티](#3-5)
+    * [3.5.1 적절한 이름 선택하기](#3-5-1)
+  * [3.6 함수의 두 가지 용도를 명확히 하기](#3-6)
+    * [3.6.1 ECMAScript 5에서 함수 호출 방식을 결정하는 요인](#3-6-1)
+    * [3.6.2 new.target 메타 프로퍼티](#3-6-2)
+  * [3.7 블록 레벨 함수](#3-7)
+    * [3.7.1 블록 레벨 함수의 사용 시기](#3-7-1)
+    * [3.7.2 Non-Strict 모드의 블록 레벨 함수](#3-7-2)
+  * [3.8 화살표 함수](#3-8)
+    * [3.8.1 화살표 함수 문법](#3-8-1)
+    * [3.8.2 즉시 실행 함수 표현식 만들기](#3-8-2)
+    * [3.8.3 No this 바인딩](#3-8-3)
+    * [3.8.4 화살표 함수와 배열](#3-8-4)
+    * [3.8.5 No arguments 바인딩](#3-8-5)
+    * [3.8.6 화살표 함수 식별하기](#3-8-6)
+  * [3.9 꼬리 호출 최적화](#3-9)
+    * [3.9.1 ECMAScript 6 꼬리 호출의 차이점](#3-9-1)
+    * [3.9.2 꼬리 호출 최적화를 이용하는 방법](#3-9-2)
+  * [3.10 요약](#3-10)    
     
 ## <a id='3-1'></a>[3.1 함수의 매개변수 기본값](#3-1)
 자바 스크립트의 함수는 함수 정의에 선언된 매개변수의 갯수에 상관없이 몇 개의 매개변수든 전달할 수 있도록 허용하는 특징이 있다.
@@ -61,7 +88,7 @@ makeRequest("/foo", null, function(body) {
 });
 // null은 유효한 값으로 간주되어 timeout의 매개변수 기본값은 사용하지 않는다.
 ```
-### 3.1.3 매개변수 기본값이 arguments 객체에 미치는 영향
+### <div id="3-1-3" />[3.1.3 매개변수 기본값이 arguments 객체에 미치는 영향](#3-1-3)
 매개변수 기본값이 존재할 때 arguments 객체는 다르게 동작한다.
 __ECMA5__
 
@@ -114,7 +141,7 @@ function mixArgs(first, second = "b") {
 mixArgs("a");
 ```
 
-### 3.1.4 매개변수 기본값 표현식
+### <a id="3-1-4" />[3.1.4 매개변수 기본값 표현식](#3-1-4)
 primitive value, 함수, 객체를 매개변수 기본값으로 사용가능하다.
 
 ```js
@@ -161,7 +188,7 @@ console.log(add(1, 1)); // 2
 console.log(add(1)); // 2
 ```
 
-### 3.1.5 TDZ에서의 매개변수 기본값
+### <a id="3-1-5" />[3.1.5 TDZ에서의 매개변수 기본값](#3-1-5)
 
 TDZ: Temporal Dead Zone
 **let 선언과 유사하게 초기화 이전에 매개변수를 기본값으로 다음 인자를 호출해 사용할 수 없다!**
@@ -178,7 +205,9 @@ console.log(add(undefined, 1)); // 에러 발생
 ```
 let 바인딩과 유사하게 동작
 
-## 3.2 이름을 명시하지 않은 매개변수 다루기
+## <a id="3-2" />[3.2 이름을 명시하지 않은 매개변수 다루기](#3-2)
+
+### <a id="3-2-1" />[3.2.1 ECMAScript 5에서의 이름을 명시하지 않은 매개변수](#3-2-1)
 ```js
 
 // object에서 필요한 프로퍼티만 가져오는 함수
@@ -210,7 +239,7 @@ console.log(bookData.title); // undefined
 
 arguments[1]부터 탐색...
 
-### 3.2.2 나머지 매개변수
+### <a id="3-2-2" />[3.2.2 나머지 매개변수](#3-2-2)
 __ECMA6__ 
 **나머지 매개변수: ** ...
 ```js
@@ -236,13 +265,13 @@ function pick(object, ...keys) {
 **나머지 매개변수가 arguments 객체에 미치는 영향**
 * 나머지 매개변수와 상관없이 arguments 객체는 함수에 전달된 인자를 항상 정확하게 반영한다.
 
-## 3.3 Function 생성자의 확장된 역활
+## <a id="3-3" />[3.3 Function 생성자의 확장된 역활](#3-3)
 ```js
 var add = new Function("first", "second", "return first + second");
 var add = new Function("first", "second = first", "return first + second");
 var add = new Function("...args", "return args[0]");
 ```
-## 3.4 전개 연산자
+## <a id="3-4" />[3.4 전개 연산자](#3-4)
 전개 연산자: spread operator
 ```js
 let values = [25, 50, 75, 100];
@@ -260,10 +289,10 @@ ECMA6 나머지 연산자를 사용하면 복잡한 this 바인딩(Math.max.appl
 **
 use Rest parameters other than apply()~~~
 
-## 3.5 name 프로퍼티
+## <a id="3-5" />[3.5 name 프로퍼티](#3-5)
 __for Trace or Debuging__ 자바스크립트에서 함수 식별의 어려움 >> __name__ porperty 추가
 
-### 3.5.1 적절한 이름 선택하기
+### <a id="3-5-1" />[3.5.1 적절한 이름 선택하기](#3-5-1)
 ```js
 function doSomething() { }
 var doAnotherThing = function() { }
@@ -295,7 +324,7 @@ console.log((new Function()).name); // Function 생성자를 이용해 만든 �
 
 **getter**와 **setter**는 get과 set을 앞에 붙이고 반환할 때에는 Object.getOwnPropertyDescriptor()를 사용하여 반환해야 한다.
 
-## 3.6 함수의 두 가지 용도를 명확히 하기
+## <a id="3-6" />[3.6 함수의 두 가지 용도를 명확히 하기](#3-6)
 ```js
 function Person(name) {
  this.name = name;
@@ -315,7 +344,7 @@ console.log(notAPerson); // "undefined"
 - 함수를 new 없이 호출하면 call 호출
 - 함수를 new와 함께 호출하면 construct 호출 // construct 메소드를 가진 함수를 생성자라고 한다.
 
-### 3.6.1 ECMAScript 5에서 함수 호출 방식을 결정하는 요인
+### <a id="3-6-1" />[3.6.1 ECMAScript 5에서 함수 호출 방식을 결정하는 요인](#3-6-1)
 - __instaceof__ 사용
 ```js
 function Person(name) {
@@ -349,7 +378,7 @@ var notAPerson = Person.call(person, "dio"); // 정살 실행
 - Person.call()은 person 변수를 첫 번째 인자로 전달하여 Person 함수 내부의 this에 person을 설정한다.
 - 결국, person 함수에서 person 인스턴스가 new? Person.apply()? 무었을 통해 호출 되었는지 확인 불가능!
 
-### 3.6.2 new.target 메타 프로퍼티
+### <a id="3-6-2" />[3.6.2 new.target 메타 프로퍼티](#3-6-2)
 __new.target__
 - 작동원리
   - [[Construct]]가 호출되면 new.target에는 new 연산자의 실행대상이 할당
@@ -391,7 +420,7 @@ var anotherPerson = new AnotherPerson("dio"); // 에러 발생! [[Construct]]를
  * new.target이 Person이어야 한다. 그런데 AnotherPerson 내부에서 Person의 call()을 사용해 호출하고 있으니 new.target은 undefined
  * 에러 발생!
  
-## 3.7 블록 레벨 함수
+## <a id="3-7" />[3.7 블록 레벨 함수](#3-7)
 
 ```js
 "use strict";
@@ -405,7 +434,7 @@ if (true) {
 ```
 - 에러가 맞지만 사용되고 있었는데 es6에서는 doSomthing()을 블록 레벨 선언으로 간주, 블록 내에서만 접근 및 호출 가능하게 만듬
 
-### 3.7.1 블록 레벨 함수의 사용 시기
+### <a id="3-7-1" />[3.7.1 블록 레벨 함수의 사용 시기](#3-7-1)
 - 블록 레벨 함수는 정의된 블록 밖에서는 제거 된다는 점에서 let 함수의 표현식과 동일
 - 차이점
   - 블록 레벨 함수는 최상단으로 호이스팅
@@ -426,7 +455,7 @@ let doSomething = function () { }
 }
 ```
 
-### 3.7.2 Non-Strict 모드의 블록 레벨 함수
+### <a id="3-7-2" />[3.7.2 Non-Strict 모드의 블록 레벨 함수](#3-7-2)
 
 ```js
 // ECMAScript 6 non-strict 모드
@@ -442,7 +471,7 @@ if (true) {
 - 블록 내부 뿐 아니라 전역에서도 최상단으로 doSomething이 호이스팅 되어 블록 밖에서도 호출 가능하다.
  - 이유 기본에 호환되지 않는 브라우저 동작들을 제거하기 위해 이러한 동작을 표준화했음
 
-## 3.8 화살표 함수
+## <a id="3-8" />[3.8 화살표 함수](#3-8)
 __=>__ 을 사용해 표현
 
 - 기존 자바스크립트 함수와 다른점
@@ -462,7 +491,7 @@ __=>__ 을 사용해 표현
 
 **이유:** this 바인딩이 자바스크립트 에러의 주요 원인 >> 최적화 가능
 
-### 3.8.1 화살표 함수 문법
+### <a id="3-8-1" />[3.8.1 화살표 함수 문법](#3-8-1)
 
 ```js
 var reflect = value => value;
@@ -500,7 +529,7 @@ var getTempItem = function(id) {
 
 ```
 
-### 3.8.2 즉시 실행 함수 표현식 만들기
+### <a id="3-8-2" />[3.8.2 즉시 실행 함수 표현식 만들기](#3-8-2)
 
 ```js
 let person = function(name) {
@@ -527,7 +556,7 @@ let person = (
 console.log(person.getname()); // "victor"
 ```
 
-### 3.8.3 No this 바인딩
+### <a id="3-8-3" />[3.8.3 No this 바인딩](#3-8-3)
 
 ```js
 let PageHandler = {
@@ -589,7 +618,19 @@ var arrow = () => {},
     obj = new arrow(); // 에러 발생! No [[Constructor]]
 ```
 
-### 3.8.5 No arguments 바인딩
+### <a id="3-8-4" />[3.8.4 화살표 함수와 배열](#3-8-4)
+
+```js
+// 일반 함수
+var result = values.sort(function (a, b) {
+ return a - b;
+});
+
+// 화살표 함수
+var result = values.sort((a, b) => a - b);
+```
+
+### <a id="3-8-5" />[3.8.5 No arguments 바인딩](#3-8-5)
 - 화살표 함수 has no arguments object, but
 - 화살표 함수 can access to mother function's arguments object
 
@@ -603,7 +644,7 @@ var arrow = args(5);
 console.log(arrow()); // 5
 ```
 
-### 3.8.6 화살표 함수 식별하기
+### <a id="3-8-6" />[3.8.6 화살표 함수 식별하기](#3-8-6)
 - typeof 화살표 함수 // "Function"
 - 화살표 함수 instanceof Function // true
 - call(), bind(), apply() 사용 가능 // 단, this 바인딩은 변하지 않음
@@ -618,7 +659,7 @@ var boundSum = sum.bind(null, 1, 2);
 console.log(boundSum()); // 3 
 ```
 
-## 3.9 꼬리 호출 최적화
+## <a id="3-9" />[3.9 꼬리 호출 최적화](#3-9)
 - [꼬리 호출 최적화 관련 동영상](https://www.youtube.com/watch?v=h80tLv0fn88&t=348s)
 
 - ECMA6 함수의 가장 흥미로운 변화: 꼬리 호출 시스템을 변경하는 엔진 최적화
@@ -633,7 +674,7 @@ __ECMA5__
 - 꼬치호출 처리: 일반적인 함수 호출과 동일하게 처리
 - 함수 호출을 나타내기 위하여 호출 스택에 새로운 ㅅ택 프레임을 만들고 추가 >> 메모리 문제 발생
 
-### 3.9.1 ECMAScript 6 꼬리 호출의 차이점
+### <a id="3-9-1" />[3.9.1 ECMAScript 6 꼬리 호출의 차이점](#3-9-1)
 - strict 모드
 - 특정 꼬리 호출을 위한 호출 스택의 크기를 줄인다.
 - Thus, 다음의 조건을 만족하면 꼬리 호출을 위한 새로운 스택 프레임을 만드는 대신 현재 스택 프레임을 지우고 재사용 한다.
@@ -680,7 +721,7 @@ function doSomething() {
 }
 ```
 
-### 3.9.2 꼬리 호출 최적화를 이용하는 방법
+### <a id="3-9-2" />[3.9.2 꼬리 호출 최적화를 이용하는 방법](#3-9-2)
 - 내부적으로 동작, 함수 최적화하려 시도하지 않는 한 고민할 필요 없다.
 - 주로 재귀 함수에서 사용
 
@@ -704,5 +745,5 @@ function factorial(n, p = 1) {
 ```
 - 참고!: 꼬리 호출 최적화에 관한 논의 진행! ECMAScript 8에 반영 예정 (ECMAScript 2017)
 
-## 3.10 요약
+## <a id="3-10" />[3.10 요약](#3-10)
 - 쉽게 사용하기 위한 기능 개선이 많았다.

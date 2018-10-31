@@ -34,7 +34,7 @@ function makeRequest(url, timeout, callback) {
 ```
 그래서 es5에서는 함수에서 기본값을 할당할 때 위와 같은 방식을 사용했다.
 
-### <div id="#3-1-2">[3.1.2 ECMAScript 6의 매개변수 기본값](#3-1-2)
+### <div id="#3-1-2" />[3.1.2 ECMAScript 6의 매개변수 기본값](#3-1-2)
 __ECMA6__ 매개변수가 전달되지 않았을 때 실행되는 초기화 구문을 제공
 ```js
 function makeRequest(url, timeout = 2000, callback = function (){}) {

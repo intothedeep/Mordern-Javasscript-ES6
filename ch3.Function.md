@@ -730,7 +730,7 @@ function factorial(n) {
  if(n <= 1)
   return 1;
  else
-  return n * factorial(n -1); // 최적화 X, 꼬리 호출 후 n * ~ 연살 실행 >> 새로운 스택... 최적화 실패!
+  return n * factorial(n -1); // 최적화 X, 꼬리 호출 후 n * ~ 연산 실행 >> 새로운 스택... 최적화 실패!
 }
 
 // 최적화 된 재귀 함수
@@ -739,7 +739,7 @@ function factorial(n, p = 1) {
   return 1 * p;
  else {
   let result = n * p;
-  return factorial(n -1, result); // 최적화 X, 꼬리 호출 후 n * ~ 연살 실행 >> 새로운 스택... 최적화 실패!
+  return factorial(n -1, result); // 최적화
  }
 }
 ```

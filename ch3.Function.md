@@ -713,8 +713,8 @@ function doSomething() {
 
 // 클로저는 꼬리 호출 최적화 시키기 어렵다!!!! why?
 // 클로저는 감싸는 곳의 변수에 접근하기 때문에 꼬리 호출 최적화는 작동하지 않는다.
-function doSomething() {
- var num = 1, func = () => {};
+function doSomething(num) {
+ var num = 1, func = () => num;
 
  // 최적화되지 않음 - 함수가 클로저로 동작, doSomething()의 arguements 객체에 접근....
  return func(); 

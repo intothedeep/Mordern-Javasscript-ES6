@@ -564,7 +564,7 @@ let PageHandler = {
  
  init: function() {
   document.addEventListener("click", function(event) {
-   this.doSomething(event.type); // 에러 발생! why? this가 객체에 묶인 것이 아닌 event에 바인딩 되어 있음!
+   this.doSomething(event.type); // 에러 발생! why? this가 객체에 묶인 것이 아닌 event에 바인딩x, 전역 객체 (browser:window, node: global)
   }, false);
  },
  

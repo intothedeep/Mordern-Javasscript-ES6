@@ -13,3 +13,4 @@ This is about studying Modern Javascript ECMA6!
 - [마크다운](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 
 #### ch3 [`Function`](./ch3.Function.md)
+#### ch4 ['확장된 객체 기능'](./ch4.md)

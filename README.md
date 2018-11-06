@@ -14,3 +14,5 @@ This is about studying Modern Javascript ECMA6!
 
 #### ch3 [`Function`](./ch3.Function.md)
 #### ch4 [`확장된 객체 기능`](./ch4.md)
+#### ch5 [`구조분해를 이용한 보다 쉬운 데이터 접근`](./ch5.md)
+

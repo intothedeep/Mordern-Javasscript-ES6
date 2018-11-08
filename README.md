@@ -19,3 +19,4 @@ This is about studying Modern Javascript ECMA6!
 
 #### ch5 [`구조분해를 이용한 보다 쉬운 데이터 접근`](./ch5.md)
 
+#### ch6 [`Symbol`](./ch6.Symbol.md)

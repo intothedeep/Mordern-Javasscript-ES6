@@ -69,8 +69,8 @@ let set2 = new Set([1,2,3,4,5,5,5,5]);
 console.log(set2.size);     // 5
 ```
 
-	* has() 메서드로 값이 있는 지 확인
-	* delete() 메서드로 하나의 값 제거, clear() 메서드로 모든 값 제거.
+* has() 메서드로 값이 있는 지 확인
+* delete() 메서드로 하나의 값 제거, clear() 메서드로 모든 값 제거.
 
 ```javascript
 console.log(set.has(5));  // true

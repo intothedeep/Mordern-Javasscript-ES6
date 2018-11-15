@@ -14,7 +14,7 @@ if(set.foo) {
 var map = Object.create(null);
 map.foo = "bar";
 // 값을 얻음
-var value = mapp.foo;
+var value = map.foo;
 console.log(value) // "bar"
 ```
 

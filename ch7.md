@@ -169,9 +169,9 @@ key = null;
 
 ## 7.3 ES6의 Map
 Map
-	* 순서가 있는 키와 값 쌍의 리스트. 키와 값은 어떤 타입이든 될 수 있다.
-	* has(key), delete(key), clear() 메서드가 있다.
-	* size 프로퍼티가 있다.
+* 순서가 있는 키와 값 쌍의 리스트. 키와 값은 어떤 타입이든 될 수 있다.
+* has(key), delete(key), clear() 메서드가 있다.
+* size 프로퍼티가 있다.
 ```javascript
 let map = new Map();
 map.set("title", "Understanding ES6");
@@ -191,7 +191,7 @@ console.log(map.get(key1));
 console.log(map.get(key2));
 ```
 	
-	* 배열로 초기화 할 수 있다.
+* 배열로 초기화 할 수 있다.
 ```javascript
 let map = new Map([["name", "jinyeong"], ["age", 27]]);
 console.log(map.has("name"));   //true

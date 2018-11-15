@@ -222,7 +222,7 @@ map.forEach(function(value, key, ownerMap) {
 * 각 객체 참조는 약한 참조이므로 가비지 컬렉션의 대상이 된다
 * 값이 아닌 키만 약한 참조 -> Weak Map 값으로 저장된 객체는 다른 모든 참조가 지워지는 경우에도 가비지 컬렉션이 되지 않음.
 * 초기화도 Map처럼 가능, 대신 key 값으로 객체를 넘겨주기
-* .has() , .delete(), .clear() 메서드를 가짐
+* .has() , .delete(), 메서드를 가짐
 
 ```javascript
 let map = new WeakMap(),

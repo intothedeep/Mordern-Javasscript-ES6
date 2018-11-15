@@ -249,7 +249,7 @@ element = null;
 
 * Object의 키는 Strings이며, Map의 키는 모든 값을 가질 수 있다.
 * Object는 크기를 수동으로 추적해야하지만, Map은 크기를 쉽게 얻을 수 있다.
-* Map은 삽입된 순서대로 반복된다.
+* Map은 iteration 을 쉽게 할 수 있다.
 * 객체(Object)에는 prototype이 있어 Map에 기본 키들이 있다. (이것은 map = Object.create(null) 를 사용하여 우회할 수 있다. )
 
 Object 혹은 Map중에 어느 것을 사용할지를 결정하는데 도움을 줄 두가지 팁이 있다.

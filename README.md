@@ -11,6 +11,7 @@ This is about studying Modern Javascript ECMA6!
 - [마크다운](https://simhyejin.github.io/2016/06/30/Markdown-syntax/#headers)
 - [마크다운](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 
+- [ES6의 제너레이터를 사용한 비동기 프로그래밍](https://meetup.toast.com/posts/73)
 #### ch3 [`Function`](./ch3.Function.md)
 - [꼬리 호출 최적화 관련 동영상 - 도형님](./ch3.Function.md#3-9)
 

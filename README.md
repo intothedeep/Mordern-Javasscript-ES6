@@ -17,6 +17,7 @@ This is about studying Modern Javascript ECMA6!
 
 #### ch4 [`확장된 객체 기능`](./ch4.md)
 - [클래스와 프로토타입 상속의 차이점](https://medium.com/javascript-scene/master-the-javascript-interview-what-s-the-difference-between-class-prototypal-inheritance-e4cd0a7562e9)
+- [프로토타입 이해하기](https://medium.com/@bluesh55/javascript-prototype-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-f8e67c286b67)
 
 #### ch5 [`구조분해를 이용한 보다 쉬운 데이터 접근`](./ch5.md)
 

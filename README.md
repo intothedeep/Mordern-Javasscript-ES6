@@ -12,16 +12,16 @@ This is about studying Modern Javascript ECMA6!
 - [마크다운](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 
 - [ES6의 제너레이터를 사용한 비동기 프로그래밍](https://meetup.toast.com/posts/73)
-#### ch3 [`Function`](./ch3.Function.md)
+#### ch3 [`Function`](./ch3.Function.md) by 임택
 - [꼬리 호출 최적화 관련 동영상 - 도형님](./ch3.Function.md#3-9)
 
-#### ch4 [`확장된 객체 기능`](./ch4.md)
+#### ch4 [`확장된 객체 기능`](./ch4.md) by 도형
 - [클래스와 프로토타입 상속의 차이점](https://medium.com/javascript-scene/master-the-javascript-interview-what-s-the-difference-between-class-prototypal-inheritance-e4cd0a7562e9)
 - [프로토타입 이해하기](https://medium.com/@bluesh55/javascript-prototype-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-f8e67c286b67)
 
-#### ch5 [`구조분해를 이용한 보다 쉬운 데이터 접근`](./ch5.md)
+#### ch5 [`구조분해를 이용한 보다 쉬운 데이터 접근`](./ch5.md) by 진영
 
-#### ch6 [`Symbol`](./ch6.Symbol.md)
+#### ch6 [`Symbol`](./ch6.Symbol.md) by 임택, 도형
 - [Symbol의 사용 사례](https://blog.perfectacle.com/2017/04/16/es6-symbol/#Symbol%EC%9D%98-%EC%82%AC%EC%9A%A9-%EC%82%AC%EB%A1%80)
 
-#### ch7 [`Set과 Map`](./ch7.md)
+#### ch7 [`Set과 Map`](./ch7.md) by 

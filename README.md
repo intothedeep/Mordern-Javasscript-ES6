@@ -24,4 +24,5 @@ This is about studying Modern Javascript ECMA6!
 #### ch6 [`Symbol`](./ch6.Symbol.md) by 임택, 도형
 - [Symbol의 사용 사례](https://blog.perfectacle.com/2017/04/16/es6-symbol/#Symbol%EC%9D%98-%EC%82%AC%EC%9A%A9-%EC%82%AC%EB%A1%80)
 
-#### ch7 [`Set과 Map`](./ch7.md) by 
+#### ch7 [`Set과 Map`](./ch7.md) by 진영
+

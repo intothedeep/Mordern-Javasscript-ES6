@@ -17,7 +17,7 @@ This is about studying Modern Javascript ECMA6!
 - [ES6 Class는 단지 prototype 상속의 문법설탕일 뿐인가?](https://gomugom.github.io/is-class-only-a-syntactic-sugar/) by [이도형](https://github.com/shine1594)
 - [자바스크립트 동향](https://2018.stateofjs.com/) by [이도형](https://github.com/shine1594)
 
-- [ES6의 제너레이터를 사용한 비동기 프로그래밍](https://meetup.toast.com/posts/73)
+- [ES6의 제너레이터를 사용한 비동기 프로그래밍](https://meetup.toast.com/posts/73) by [이도형](https://github.com/shine1594)
 #### ch3 [`Function`](./ch3.Function.md) by 임택
 - [꼬리 호출 최적화 관련 동영상 - 도형님](./ch3.Function.md#3-9)
 

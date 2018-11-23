@@ -1,5 +1,9 @@
 # Mordern Javascript ES6
 
+[이도형](https://github.com/shine1594)
+[이진영](https://github.com/LottieS2)
+[임택](https://github.com/intothedeep/)
+[석재봉](.)
 
 This is about studying Modern Javascript ECMA6!
 
@@ -10,6 +14,8 @@ This is about studying Modern Javascript ECMA6!
 - [33 concepts every JavaScript developer should know](https://github.com/leonardomso/33-js-concepts (edited))
 - [마크다운](https://simhyejin.github.io/2016/06/30/Markdown-syntax/#headers)
 - [마크다운](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+- [ES6 Class는 단지 prototype 상속의 문법설탕일 뿐인가?](https://gomugom.github.io/is-class-only-a-syntactic-sugar/) by [이도형](https://github.com/shine1594)
+- [자바스크립트 동향](https://2018.stateofjs.com/) by [이도형](https://github.com/shine1594)
 
 - [ES6의 제너레이터를 사용한 비동기 프로그래밍](https://meetup.toast.com/posts/73)
 #### ch3 [`Function`](./ch3.Function.md) by 임택

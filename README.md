@@ -32,3 +32,4 @@ This is about studying Modern Javascript ECMA6!
 
 #### ch7 [`Set과 Map`](./ch7.md) by 진영
 
+#### ch8 [Iterator/Generator](./ch8.iterator.generator.md) by 임택

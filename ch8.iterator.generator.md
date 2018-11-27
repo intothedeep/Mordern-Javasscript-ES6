@@ -1,4 +1,4 @@
-#ch8 Iterator/Generator
+# ch8 Iterator/Generator
 
 - 컬렉션의 다음 요소를 반환하는 이터레이터 객체를 사용하는 방식으로 옮겨가는 추세이다.
 - 데이터를 효율적으로 처리할 수 있다. (why???)

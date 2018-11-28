@@ -20,6 +20,7 @@ This is about studying Modern Javascript ECMA6!
 - [ES6의 제너레이터를 사용한 비동기 프로그래밍](https://meetup.toast.com/posts/73) by [이도형](https://github.com/shine1594)
 #### ch3 [`Function`](./ch3.Function.md) by 임택
 - [꼬리 호출 최적화 관련 동영상 - 도형님](./ch3.Function.md#3-9)
+- [즉시 실행 함수](http://beomy.tistory.com/9) by 임택
 
 #### ch4 [`확장된 객체 기능`](./ch4.md) by 도형
 - [클래스와 프로토타입 상속의 차이점](https://medium.com/javascript-scene/master-the-javascript-interview-what-s-the-difference-between-class-prototypal-inheritance-e4cd0a7562e9)

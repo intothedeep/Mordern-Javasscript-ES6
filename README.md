@@ -37,3 +37,5 @@ This is about studying Modern Javascript ECMA6!
 - [즉시 실행 함수](http://beomy.tistory.com/9) by 임택
 
 #### ch9 [`Class`](./ch9.class.md) by 임택
+
+###  ch10 [`Array`](./ch10.Array.md) by 임택

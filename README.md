@@ -40,3 +40,6 @@ This is about studying Modern Javascript ECMA6!
 #### ch9 [`Class`](./ch9.class.md) by 임택
 
 ###  ch10 [`Array`](./ch10.Array.md) by 임택
+
+###  ch11 Promise
+- [프로미스 예제](https://joshua1988.github.io/web-development/javascript/promise-for-beginners/) by 

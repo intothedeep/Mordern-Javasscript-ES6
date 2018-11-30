@@ -45,3 +45,24 @@ This is about studying Modern Javascript ECMA6!
 
 ####  ch11 Promise
 - [프로미스 예제](https://joshua1988.github.io/web-development/javascript/promise-for-beginners/) by 
+
+
+
+
+
+##### 클로저
+```txt
+
+function parent() {
+  var a = 'Parent is done';
+  function child() {
+    console.log(a);
+  }
+  return child;
+}
+var closure = parent();
+closure();
+
+
+위 내부함수의 정의대로라면 parent 의 내부함수인 child() 는 외부에서 접근이 불가능하다. 하지만 return 값에 child 를 넘김으로써 외부에서도 child 를 호출할 수 있게 된다. 따라서, child() 에서 parent 의 값을 참고하고 있다면, child() 를 밖에서 호출함으로써 parent() 의 변수에 접근이 가능하게 된다. 이것이 클로져
+```

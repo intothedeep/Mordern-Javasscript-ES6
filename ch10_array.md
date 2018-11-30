@@ -1,0 +1,366 @@
+# 배열의 기능 개선
+
+## 10.1 배열 만들기
+
+Array 생성자 함수는 인자에 따라 동작이 달라져서 혼란스러울 수 있다.
+
+- 인자가 1개일 때
+
+  - number type
+
+    전달된 number type의 인자가 배열의 length가 되고 각 자리에 아무 값도 없는 구멍난 배열이 만들어진다. 음수, 실수, NaN, Infinity는 number type이지만 Array생성자의 유일한 인자로 전달되면 에러가 발생한다.
+
+  - string type
+
+    숫자를 나타내는 문자열이라도 문자열 1개로 취급되어 해당하는 문자열을 첫 번째 인자로 가지는 배열이 만들어진다.
+
+- 인자가 2개 이상
+
+  생성자 함수에 전달된 인자들이 배열의 원소가 되어 배열이 생성된다.
+
+```javascript
+console.log(new Array(2));
+console.log(new Array("2"));
+console.log(new Array(1, 2));
+console.log(new Array(1, "2"));
+console.log(new Array(NaN, Infinity));
+```
+
+
+
+#### Array.of
+
+Array 생성자 함수가 인자에 따라 동작이 달라져 개발자에게 혼란을 줄 수 있어서 위험하기 때문에 동작이 일관적인 `Array.of` 함수가 도입되었다. `Array.of` 함수는 숫자 값 1개가 인자로 전달 되었을때 이를 배열의 length속성으로 지정하지 않고 배열의 원소로 처리하기 때문에 일관성이 보장된다.
+
+```javascript
+console.log(Array.of(1, 2));
+console.log(Array.of(2));
+console.log(Array.of("2"));
+```
+
+
+
+#### Array.from
+
+Array-like 객체와 iterable 객체를 배열로 변환한다.
+
+```javascript
+// es5에서는 Array.prototype에 정의된 함수의 this를 array-like객체로 바인딩하여 사용함.
+const arrayLikeObj = {
+  0: "a",
+  1: "b",
+  2: "c",
+  length: 3
+};
+
+console.log(Array.prototype.slice.call(arrayLikeObj));
+
+console.log(
+  Array.prototype.map.call(arrayLikeObj, function(a) {
+    return a + a;
+  })
+);
+
+// es6
+console.log(Array.from(arrayLikeObj));
+
+console.log(
+  Array.from({
+    *[Symbol.iterator]() {
+      yield "a";
+      yield "b";
+      yield "c";
+    }
+  })
+);
+
+// Array.from의 두 번째 인자로 매핑 함수를 전달하여 map 함수처럼 사용 가능. 세 번째 인자는 두 번째 인자인 함수에서 사용할 this 객체를 지정해 줄 수 있다.
+console.log(
+  Array.from(
+    {
+      *[Symbol.iterator]() {
+        yield 1;
+        yield 2;
+        yield 3;
+      }
+    },
+    a => a * a
+  )
+);
+```
+
+
+
+## 10.2 새로운 배열 메서드
+
+- find, findIndex 그리고 유용한 배열 메서드
+
+  ````javascript
+  console.log([25, 30, 35, 40, 45].find(n => n > 33));
+  console.log([25, 30, 35, 40, 45].findIndex(n => n > 33));
+  
+  // es7
+  console.log([25, 30, 35, 40, 45].includes(30));
+  
+  // 유용한 Array 메서드들
+  console.log(
+    [25, 30, 35, 40, 45]
+      .map(a => a + 3)
+      .filter(a => a % 2)
+      .reduce((a, b) => a + b)
+  );
+  
+  [25, 30, 35, 40, 45].forEach(console.log);
+  
+  console.log([25, 30, 35, 40, 45].every(n => n % 5 === 0));
+  console.log([25, 30, 35, 40, 45].some(n => n > 33));
+  ````
+
+- fill
+
+  ```javascript
+  const number = [1, 2, 3, 4];
+  console.log(
+      [...number].fill(0)); // 첫 번째 인자는 배열을 채울 값
+  console.log(
+      [...number].fill(0, 2)); // 두 번째 인자는 시작 index
+  console.log(
+      [...number].fill(0, 1, 3)); // 세 번째 인자는 종료 index(포함하지는 않음)
+  console.log(
+      [...number].fill(0, -2, -1)); // index가 음수면 length에 음수 값을 더한 결과 값으로 취급
+  ```
+
+- copyWithin
+
+  ```javascript
+  const number = [1, 2, 3, 0, 0, 0];
+  console.log(
+  	[...number].copyWithin(3, 0));
+  
+  // 첫 번째 인자는 복사한 값들을 붙여넣을 index
+  // 두 번째 인자는 복사할 값들의 시작 index
+  
+  console.log(
+  	[...number].copyWithin(3, 0, 1)); // 세 번째 인자는 복사를 멈출 index
+  
+  console.log(
+  	[...number].copyWithin(0, -3, -1)); // index가 음수면 length에 음수 값을 더한 결과 값으로 취급
+  ```
+
+*`fill`과 `copyWithin` 함수는 타입 배열(Typed Array)에서 유래되었고 숫자 비트를 다룰때 유용하다.*
+
+
+
+## 10.3 타입 배열
+
+자바스크립트 숫자를 이용한 산술 연산은 64비트 부동소수점 형식으로 저장하고 필요에 따라 32비트 정수로 변환했기 때문에 WebGL을 다룰때 성능 문제가 심각했고 이를 해결하기 위해 빠른 산술 연산이 가능한 타입 배열이 도입되었다. 
+
+#### 숫자 데이터 타입
+
+- Signed 8-bit integer (int8)
+- Unsigned 8-bit integer (uint8)
+- Signed 16-bit integer (int16)
+- Unsigned 16-bit integer (uint16)
+- Signed 32-bit integer (int32)
+- Unsigned 32-bit integer (uint32)
+- 32-bit float (float32)
+- 64-bit float (float64)
+
+
+
+#### 배열 버퍼 (Array Buffer)
+
+지정된 수의 바이트를 포함하는 메모리 공간을 만든다.
+
+```javascript
+const buffer = new ArrayBuffer(10); // 10bytes
+console.log(buffer.byteLength) // 10
+console.log(buffer.slice(1, 9).byteLength) // 8
+```
+
+
+
+#### 뷰와 함께 배열 버퍼 조작하기
+
+배열 버퍼를 조작할 때, 여덟 가지 숫제 데이터 타입 연산을 가능하게 하는 DataView 타입 객체를 사용한다.
+
+
+
+##### 뷰 정보 얻기
+
+- buffer
+  뷰와 연결된 배열 버퍼
+
+- byteOffset
+
+  DataView 생성자의 두 번째 인자. (기본값은 0)
+
+- byteLength
+
+  DataView 생성자의 세 번째 인자. (기본값은 buffer의 byteLength)
+
+```javascript
+const buffer = new ArrayBuffer(10);
+const view = new DataView(buffer);
+const view56 = new DataView(buffer, 5, 2); // 두 번째 byte offset, 세 번째 인자는 byte length
+
+console.log(view.buffer === buffer); // true
+console.log(view56.buffer === buffer); // true
+console.log(view.byteOffset); // 0
+console.log(view56.byteOffset); // 5
+console.log(view.byteLength); // 10
+console.log(view56.byteLength); // 2
+```
+
+
+
+##### 데이터 읽고 쓰기
+
+getter 메서드는 첫 번째 인자로 byteOffset, 두 번째 인자로 littleEndian값을 받고 setter 메서드는 byteOffset, value, litteEndian 순으로 인자를 받는다. 
+
+- `getInt8(byteOffset, littleEndian)`
+
+- `setInt8(byteOffset, value, litteEndian)`
+- `getUint8`
+- `setUint8`
+
+... int32, uint32 까지 동일한 메서드가 존재
+
+- `getFloat32`
+- `setFloat32`
+- `getFloat64`
+- `setFloat64`
+
+```javascript
+const buffer = new ArrayBuffer(2),
+  view = new DataView(buffer);
+  
+view.setInt8(0, 5);
+view.setInt8(1, -1);
+
+console.log(
+  view.getInt16(0),
+  view.getInt8(0),
+  view.getInt8(1)
+);
+```
+
+
+
+#### 타입 배열과 뷰
+
+타입 배열 생성자는 여러 타입의 인자를 받는다.
+
+- buffer, [byteOffset], [byteLength]
+- number (정수)
+- 객체
+  - 타입 배열 (Typed Array)
+  - 이터러블 (Iterable)
+  - 배열 (Array)
+  - 유사배열객체 (Array-Like)
+
+*타입 배열 생성자에 아무런 인자도 전달되지 않으면, 생성자는 기본적으로 0이 전달된 것처럼 동작한다. 즉, 버퍼에 0바이트가 할당되기 때문에 데이터를 가질 수 없는 타입 배열을 만들게 된다.*
+
+```javascript
+const buffer = new ArrayBuffer(10);
+const view = new Int8Array(buffer); // DataView 생성자와 같은 인자를 받는 생성자 함수
+const view56 = new Int8Array(buffer, 5, 2); // DataView 생성자와 같은 인자를 받는 생성자 함수2
+
+const ints = new Int16Array(2); // 바이트 수가 아닌 int16 elment 수
+const floats = new Float32Array(5); // 바이트 수가 아닌 float32 element 수
+
+console.log(view.length, view.byteLength);
+console.log(view56.length, view56.byteLength);
+console.log(ints.length, ints.byteLength);
+console.log(floats.length, floats.byteLength);
+
+// 객체를 인자로 받는 생성자함수
+const int16arr = new Int16Array([1, 2]);
+const int32arr = new Int32Array(int16arr);
+console.log(int16arr.buffer === int32arr.buffer); // 배열이 복사될 때 buffer가 달라지는 것에 주의
+console.log(int16arr.byteLength, int16arr.length);
+console.log(int16arr[0], int16arr[1]);
+console.log(int32arr.byteLength, int32arr.length);
+console.log(int32arr[0], int32arr[1]);
+```
+
+*각 요소가 나타내는 바이트 수를 알아내려면 `BYTES_PER_ELEMENT` 프로퍼티를 사용한다.*
+
+```javascript
+console.log(Int32Array.BYTES_PER_ELEMENT);
+```
+
+
+
+## 10.4 타입 배열과 일반 배열의 유사점
+
+일반 배열과 마찬가지로 **length 프로퍼티로 개수를 확인**할 수 있고, 숫자 **인덱스를 사용하여 배열 요소에 직접 접근**할 수 있다.
+
+#### 공통 메서드
+
+copyWithin, entries, fill, filter, find, findIndex, forEach, indexOf, join, keys, lastIndexOf, map, reduce, reduceRight, reverse, slice, some, sort, values, of, from
+
+*Array.prototype의 메서드들과 유사하게 동작하지만 정확하게 같지는 않다. 타입 배열의 메서드들은 배열이 반환될 때 숫자 타입의 안전성을 검사하고, 일반 배열 대신 타입 배열을 반환한다. (Symbol.species 내부 동작 때문)*
+
+```javascript
+const ints = new Int16Array([25, 50]),
+  mapped = ints.map(v => v * 2);
+  
+console.log(mapped.length, mapped[0], mapped[1]);
+console.log(mapped instanceof Int16Array);
+```
+
+
+
+## 10.5 타입 배열과 일반 배열의 차이점
+
+- Array.isArray() 결과가 false이다.
+
+- 타입 배열은 항상 같은 크기를 유지한다.
+
+  ```javascript
+  const ints = new Int16Array([25, 50]);
+  console.log(ints);
+  ints[2] = 5
+  console.log(ints);
+  ```
+
+- 유효한 데이터 타입만 사용되도록 보장하기 위해 검사를 수행하며 유효하지 않은 값은 0으로 대체된다.
+
+  ```javascript
+  const ints = new Int16Array(["hi"]);
+  console.log(ints);
+  console.log((new Int16Array([0, 1, 2])).map(_ => 'hi'));
+  ```
+
+- 이용할 수 없는 일반 배열 메서드
+
+  concat, pop, push, shift, splice, unshift
+  *타입 배열은 크기가 변하지 않기 때문에 일반 배열에서 크기를 변경하는 메서드를 사용할 수 없다.*
+
+- 추가적인 메서드
+
+  - set(value=undefined, offset=0)
+
+    ```javascript
+    const ints = new Int16Array(4);
+    ints.set([25, 50]);
+    ints.set([75, 100], 2);
+    console.log(ints);
+    ```
+
+  - subarray(start=0, end=length-1)
+
+    ```javascript
+    const ints = new Int16Array([25, 50, 75, 100]);
+    const sub1 = ints.subarray();
+    const sub2 = ints.subarray(2);
+    const sub3 = ints.subarray(1, 3);
+    
+    console.log(sub1.toString());
+    console.log(sub2.toString());
+    console.log(sub3.toString());
+    ```
+
+    [subarray vs slice](http://shockry.blogspot.com/2017/04/javascript-typed-arrays-slice-vs.html)
+    subarray는 새로운 배열이 생성되는것이 아니라 원본 배열의 일부분이고 slice함수는 원본 배열의 값들을 얕은 복사를 통해 완전히 새로운 배열이 생성된다.

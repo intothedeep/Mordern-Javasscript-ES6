@@ -40,7 +40,7 @@ This is about studying Modern Javascript ECMA6!
 #### ch9 [`Class`](./ch9.class.md) by 임택
 
 ####  ch10 Array
-- [`Array`](./ch10_Array.md) by 이도형
+- [`Array`](./ch10_array.md) by 이도형
 - [`Array`](./ch10.Array.md) by 임택
 
 ####  ch11 Promise

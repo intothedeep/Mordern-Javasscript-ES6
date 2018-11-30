@@ -16,7 +16,7 @@ This is about studying Modern Javascript ECMA6!
 - [마크다운](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 - [ES6 Class는 단지 prototype 상속의 문법설탕일 뿐인가?](https://gomugom.github.io/is-class-only-a-syntactic-sugar/) by [이도형](https://github.com/shine1594)
 - [자바스크립트 동향](https://2018.stateofjs.com/) by [이도형](https://github.com/shine1594)
-- [신입 프론트엔드 개발자 면접 질문 2017](https://velog.io/@honeysuckle/%EC%8B%A0%EC%9E%85-%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C-%EB%A9%B4%EC%A0%91-%EC%A7%88%EB%AC%B8-%EB%AA%A8%EC%9D%8C) by 
+- [신입 프론트엔드 개발자 면접 질문 2017](https://velog.io/@honeysuckle/%EC%8B%A0%EC%9E%85-%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C-%EB%A9%B4%EC%A0%91-%EC%A7%88%EB%AC%B8-%EB%AA%A8%EC%9D%8C) by 이도형
 
 - [ES6의 제너레이터를 사용한 비동기 프로그래밍](https://meetup.toast.com/posts/73) by [이도형](https://github.com/shine1594)
 #### ch3 [`Function`](./ch3.Function.md) by 임택

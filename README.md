@@ -45,6 +45,7 @@ This is about studying Modern Javascript ECMA6!
 ####  ch11 [`Promise-Async`](./ch11.Promise.Asynce.md) by 임택
 - [프로미스 예제](https://joshua1988.github.io/web-development/javascript/promise-for-beginners/) by 임택
 - [ES6의 제너레이터를 사용한 비동기 프로그래밍](https://meetup.toast.com/posts/73) by [이도형](https://github.com/shine1594)
+- [Understanding Asynchronous JavaScript — the Event Loop](https://blog.bitsrc.io/understanding-asynchronous-javascript-the-event-loop-74cd408419ff) by 
 
 
 

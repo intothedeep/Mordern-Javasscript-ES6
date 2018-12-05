@@ -49,8 +49,7 @@ This is about studying Modern Javascript ECMA6!
   - [자바스크립트 비동기 방식 동작 풀어서 정리](./ex.js.asyncronous.event-loop.md) by 임택
 
 
-#### ch13 [`모듈로 캡슐화하기`](./ch13_.md) by 진영
-
+#### ch13 [`모듈로 캡슐화하기`](./ch13_module.md) by 진영
 
 ##### 클로저
 ```js

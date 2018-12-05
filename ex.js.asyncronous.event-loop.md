@@ -50,6 +50,7 @@ first();
 
 콜 스택에서 위 코드가 실행되는 순서는 아래와 같다.
 
+```txt
 main(),
 main(), first()
 main(), first(), console.log("Hi there!")
@@ -61,6 +62,8 @@ main(), first()
 main(), first(), console.log("The End!");
 main(), first()
 main()
+```
+
 
 
 ### How Does Asynchronous JavaScript Work?
@@ -98,18 +101,238 @@ greeting();
 - 위 처럼 한 과정이 처리가 끝날 때 까지 다음 작업은 기다려야 한다.
   - 이걸 다른 말로
     - 함수들이 콜 스택 또는 메인 쓰레드를 Block한다라고 한다.
-    
+  
 - ** THIS is not IDEAL**
- 
+
 ### So what's the solution?
-- The simplest solution is
-  - __asynchronous callbacks!!__
+- event
+- callback
+- setTimeout
+- Promise
+
+
+
+- 가장 간단한 방법은
+  - 비동기 callback을 사용하면 된다.
 
 ```js
+const networkRequest = () => {
+  setTimeout(() => {
+    console.log('Async Code');
+  }, 2000);
+};
+console.log('Hello World');
+networkRequest();
+```
 
+- setTimeout 메서드는 자바스크립트 엔진이 아니고
+  - web APIs(in browsers)
+    - C/C++ APIs(in node.js)
+
+- 이 코드가 어떻게 실행되는지 이해하려면
+  - 이벤트 루프나 콜백 큐에 대한 개념을 알아야 한다 (task queue or message queue)
+
+
+
+- the event loop, web APIs, message queue/task queue
+  - 는 자바스크립트 엔진이 아니고
+    - 브라우저의 자바스크립트 실행환경 이거나
+      - Node.js의 자바스크립트 실행환경이다
+
+
+
+위 코드가 어떻게 실행되는지 알아보자
+
+```js
+const networkRequest = () => {
+  setTimeout(() => {
+    console.log('Async Code');
+  }, 2000);
+};
+console.log('Hello World');
+networkRequest();
+console.log('The End');
+```
+
+- console.log("Hello World");
+  - in
+  - out
+- networkRequest()
+  - in
+    - setTimeout()
+      - in
+        - callback
+        - time in milliseconds
+          - starts a timer of s2 in the web APIs environment
+      - out
+  - out
+- console.log("The End");
+  - in
+  - out
+- after 2s
+  - the callback is pushed to the message queue
+    - 그러나 콜백은 바로 실행되지 않고
+      - event loop를 통해 동작
+
+
+
+##### The Event Loop
+
+- 이벤트 루프가 하는 일은
+
+  - 콜 스택을 들여다 보면서
+    - 콜 스택이 비어있는지 아닌지 확인한다.
+
+- 만약 콜 스택이 비어 있으면
+
+  - 메세지 큐에 대기하고 있는 callback이 있는지 확인해야 한다.
+
+- 위 코드 같은 경우
+
+  - 메세지 큐는
+    - 하나의 callback(console.log("Async code!"))를 가지고 있고
+    - call stack은 비어있다.
+      - 그러면 콜 스택에 콜백을
+        - in
+        - out
+
+- 콜백이 완전히 비워졌다~
+
+- 프로그램 끝!
+
+
+
+
+
+##### DOM Events
+
+- 메세지 큐는 
+  - 클릭이나 키보드 이벤트와 같은 DOM events가 가진 콜백도 저장한다.
+
+```js
+document.querySelector('.btn').addEventListener('click', (event) => {
+   console.log("Button Clicked") 
+});
+```
+
+- DOM 이벤트 같은 경우에 이벤트 리스너는 web APIs environment에서 특정 이벤트를 기다린다ㅏ.
+  - 그리고 그 이벤트가 벌어지면
+    - callback 함수가 메세지 큐에 등록된다.
+- 이 때
+  - Event Loop가 call stack이 비어있는지 확인하고
+    - 해당 이벤트로 인해 발생한 callback을 call stack에 등록한다.
+
+
+
+### ES6 Job Queue/Micro-Task queue
+
+- job queue/micro-task queue는 자바스크립트 Promises에서 사용된다.
+- 잡 큐와 메세지 큐의 차이점
+  - 잡 큐는 메세지 큐보다 빨리 실행된다.(higher priority)
+- 따라서
+  - 잡 큐와 마이크로 테스크 큐에 들어 있는 
+    - Promised jobs들은 메세지 큐에 들어 있는 콜백들보다 먼저 실행된다.
+
+
+
+```js
+console.log("script start");
+
+setTimeout(() => {
+    console.log("setTimeout");
+}, 0);
+
+new Promise((resolve, reject) => {
+    resolve("Promise resolved@!");
+}).then(res => {
+   console.log(res); 
+}).catch(err => console.log(err));
+
+console.log("Script End");
 ```
 
 
 
+output:
 
+```js
+Script start
+Script End
+Promise resolved
+setTimeout
+```
+
+- 이처럼 promise가 setTimeout에 들어있는 callback보다 먼저 실행되는 것을 확인할 수 있다.
+
+
+
+For example:
+
+```js
+console.log('Script start');
+setTimeout(() => {
+  console.log('setTimeout 1');
+}, 0);
+setTimeout(() => {
+  console.log('setTimeout 2');
+}, 0);
+new Promise((resolve, reject) => {
+    resolve('Promise 1 resolved');
+  }).then(res => console.log(res))
+    .catch(err => console.log(err));
+new Promise((resolve, reject) => {
+    resolve('Promise 2 resolved');
+  }).then(res => console.log(res))
+    .catch(err => console.log(err));
+console.log('Script End');
+```
+
+
+
+This prints:
+
+```js
+Script start
+Script End
+Promise 1 resolved
+Promise 2 resolved
+setTimeout 1
+setTimeout 2
+```
+
+- message queue에 들어있는 callback보다 micro-task queue에 들어있는 resolve가 먼저 실행된다.
+
+
+
+예:
+
+```js
+console.log('Script start'); //1
+setTimeout(() => {
+  console.log('setTimeout'); // 6
+}, 0);
+new Promise((resolve, reject) => {
+    resolve('Promise 1 resolved');
+  }).then(res => console.log(res)); // 3
+new Promise((resolve, reject) => {
+  resolve('Promise 2 resolved');
+  }).then(res => {
+       console.log(res); // 4
+       return new Promise((resolve, reject) => {
+         resolve('Promise 3 resolved');
+       })
+     }).then(res => console.log(res)); // 5
+console.log('Script End'); // 2
+```
+
+출력:
+
+```js
+Script start
+Script End
+Promise 1 resolved
+Promise 2 resolved
+Promise 3 resolved
+setTimeout
+```
 

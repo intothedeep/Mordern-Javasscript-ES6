@@ -47,6 +47,7 @@ This is about studying Modern Javascript ECMA6!
 - [ES6의 제너레이터를 사용한 비동기 프로그래밍](https://meetup.toast.com/posts/73) by [이도형](https://github.com/shine1594)
 - [Understanding Asynchronous JavaScript — the Event Loop](https://blog.bitsrc.io/understanding-asynchronous-javascript-the-event-loop-74cd408419ff)
   - [자바스크립트 비동기 방식 동작 풀어서 정리](./ex.js.asyncronous.event-loop.md) by 임택
+- [Async/Await를 사용해 자바스크립트 비동기를 만들자](https://blueshw.github.io/2018/02/27/async-await/) by 임택
 
 
 #### ch13 [`모듈로 캡슐화하기`](./ch13_module.md) by 진영

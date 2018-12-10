@@ -18,6 +18,9 @@ This is about studying Modern Javascript ECMA6!
 - [자바스크립트 동향](https://2018.stateofjs.com/) by [이도형](https://github.com/shine1594)
 - [신입 프론트엔드 개발자 면접 질문 2017](https://velog.io/@honeysuckle/%EC%8B%A0%EC%9E%85-%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C-%EB%A9%B4%EC%A0%91-%EC%A7%88%EB%AC%B8-%EB%AA%A8%EC%9D%8C) by 이도형
 
+- [This year in JavaScript: 2018 in review and npm’s predictions for 2019](https://blog.npmjs.org/post/180868064080/this-year-in-javascript-2018-in-review-and-npms) from 이도형
+- [TypeScript Basic](https://www.notion.so/TypeScript-Basic-727820ac0d4544498ebe732e940816f4) from 이도형
+
 #### ch3 [`Function`](./ch3.Function.md) by 임택
 - [꼬리 호출 최적화 관련 동영상 - 도형님](./ch3.Function.md#3-9)
 - [즉시 실행 함수](http://beomy.tistory.com/9) by 임택

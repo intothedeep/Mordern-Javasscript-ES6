@@ -54,7 +54,13 @@ This is about studying Modern Javascript ECMA6!
 - [Async/Await를 사용해 자바스크립트 비동기를 만들자](https://blueshw.github.io/2018/02/27/async-await/) from 임택
 
 
-#### ch13 [`모듈로 캡슐화하기`](./ch13_module.md) by 진영
+#### ch13 `모듈로 캡슐화하기`
+- [`모듈로 캡슐화하기`](./ch13_module.md) by 진영
+- [`모듈로 캡슐화하기`](./ch13.module.md) by 임택
+  - [서비스워커 정체가 뭐니?](https://b.limminho.com/archives/1384) from 임택
+
+
+
 
 ##### 클로저
 ```js

@@ -21,6 +21,8 @@ This is about studying Modern Javascript ECMA6!
 - [This year in JavaScript: 2018 in review and npm’s predictions for 2019](https://blog.npmjs.org/post/180868064080/this-year-in-javascript-2018-in-review-and-npms) from 이도형
 - [TypeScript Basic](https://www.notion.so/TypeScript-Basic-727820ac0d4544498ebe732e940816f4) from 이도형
 - [A Recap of Frontend Development in 2018](https://levelup.gitconnected.com/a-recap-of-frontend-development-in-2018-715724c9441d) from 이도형
+-[자바스크립트 모듈, 모듈 포맷, 모듈 로더와 모듈 번들러에 대한 10분 입문서](https://github.com/codepink/codepink.github.com/wiki/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EB%AA%A8%EB%93%88,-%EB%AA%A8%EB%93%88-%ED%8F%AC%EB%A7%B7,-%EB%AA%A8%EB%93%88-%EB%A1%9C%EB%8D%94%EC%99%80-%EB%AA%A8%EB%93%88-%EB%B2%88%EB%93%A4%EB%9F%AC%EC%97%90-%EB%8C%80%ED%95%9C-10%EB%B6%84-%EC%9E%85%EB%AC%B8%EC%84%9C) from 임택
+
 
 #### ch3 [`Function`](./ch3.Function.md) by 임택
 - [꼬리 호출 최적화 관련 동영상 - 도형님](./ch3.Function.md#3-9)

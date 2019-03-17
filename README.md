@@ -64,6 +64,9 @@ This is about studying Modern Javascript ECMA6!
 
 
 
+
+
+
 ##### 클로저
 ```js
 

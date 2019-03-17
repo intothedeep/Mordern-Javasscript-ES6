@@ -54,6 +54,7 @@ This is about studying Modern Javascript ECMA6!
 - [Understanding Asynchronous JavaScript — the Event Loop](https://blog.bitsrc.io/understanding-asynchronous-javascript-the-event-loop-74cd408419ff)
   - [자바스크립트 비동기 방식 동작 풀어서 정리](./ex.js.asyncronous.event-loop.md) from 임택
 - [Async/Await를 사용해 자바스크립트 비동기를 만들자](https://blueshw.github.io/2018/02/27/async-await/) from 임택
+- [자바스크립트 비동기 처리 과정과 RxJS Scheduler](http://sculove.github.io/blog/2018/01/18/javascriptflow/) from 임택
 
 
 #### ch13 `모듈로 캡슐화하기`

@@ -24,42 +24,42 @@ This is about studying Modern Javascript ECMA6!
 - [자바스크립트 모듈, 모듈 포맷, 모듈 로더와 모듈 번들러에 대한 10분 입문서](https://github.com/codepink/codepink.github.com/wiki/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EB%AA%A8%EB%93%88,-%EB%AA%A8%EB%93%88-%ED%8F%AC%EB%A7%B7,-%EB%AA%A8%EB%93%88-%EB%A1%9C%EB%8D%94%EC%99%80-%EB%AA%A8%EB%93%88-%EB%B2%88%EB%93%A4%EB%9F%AC%EC%97%90-%EB%8C%80%ED%95%9C-10%EB%B6%84-%EC%9E%85%EB%AC%B8%EC%84%9C) from 임택
 
 
-#### ch3 [`Function`](./ch3.Function.md) by 임택
+#### ch3 [`Function`](./ch3.Function.Taek.md) by 임택
 - [꼬리 호출 최적화 관련 동영상 - 도형님](./ch3.Function.md#3-9)
 - [즉시 실행 함수](http://beomy.tistory.com/9) by 임택
 
-#### ch4 [`확장된 객체 기능`](./ch4.md) by 도형
+#### ch4 [`확장된 객체 기능`](./ch4.Object.Dohyung.md) by 도형
 - [클래스와 프로토타입 상속의 차이점](https://medium.com/javascript-scene/master-the-javascript-interview-what-s-the-difference-between-class-prototypal-inheritance-e4cd0a7562e9)
 - [프로토타입 이해하기](https://medium.com/@bluesh55/javascript-prototype-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-f8e67c286b67)
 
-#### ch5 [`구조분해를 이용한 보다 쉬운 데이터 접근`](./ch5.md) by 진영
+#### ch5 [`구조분해를 이용한 보다 쉬운 데이터 접근`](./ch5.Jinyoung.md) by 진영
 
-#### ch6 [`Symbol`](./ch6.Symbol.md) by 임택, 도형
+#### ch6 [`Symbol`](./ch6.Symbol.Taek.md) by 임택, 도형
 - [Symbol의 사용 사례](https://blog.perfectacle.com/2017/04/16/es6-symbol/#Symbol%EC%9D%98-%EC%82%AC%EC%9A%A9-%EC%82%AC%EB%A1%80) from 임택
 
-#### ch7 [`Set과 Map`](./ch7.md) by 진영
+#### ch7 [`Set과 Map`](./ch7.Set.Map.Jinyoung.md) by 진영
 
-#### ch8 [`Iterator/Generator`](./ch8.iterator.generator.md) by 임택
+#### ch8 [`Iterator/Generator`](./ch8.Iterator.Generator.Taek.md) by 임택
 - [즉시 실행 함수](http://beomy.tistory.com/9) from 임택
 
-#### ch9 [`Class`](./ch9.class.md) by 임택
+#### ch9 [`Class`](./ch9.Class.Taek.md) by 임택
 
 #### ch10 `Array`
-- [`Array`](./ch10_array.md) by 이도형
-- [`Array`](./ch10.Array.md) by 임택
+- [`Array`](./ch10.Array.Dohyung.md) by 이도형
+- [`Array`](./ch10.Array.Taek.md) by 임택
 
-####  ch11 [`Promise-Async`](./ch11.Promise.Asynce.md) by 임택
+####  ch11 [`Promise-Async`](./ch11.Promise.Asynce.Taek.md) by 임택
 - [프로미스 예제](https://joshua1988.github.io/web-development/javascript/promise-for-beginners/) from 임택
 - [ES6의 제너레이터를 사용한 비동기 프로그래밍](https://meetup.toast.com/posts/73) by [이도형](https://github.com/shine1594)
 - [Understanding Asynchronous JavaScript — the Event Loop](https://blog.bitsrc.io/understanding-asynchronous-javascript-the-event-loop-74cd408419ff)
-  - [자바스크립트 비동기 방식 동작 풀어서 정리](./ex.js.asyncronous.event-loop.md) from 임택
+  - [자바스크립트 비동기 방식 동작 풀어서 정리](./ex.js.Asyncronous.EventLoop.Taek.md) from 임택
 - [Async/Await를 사용해 자바스크립트 비동기를 만들자](https://blueshw.github.io/2018/02/27/async-await/) from 임택
 - [자바스크립트 비동기 처리 과정과 RxJS Scheduler](http://sculove.github.io/blog/2018/01/18/javascriptflow/) from 임택
 
 
 #### ch13 `모듈로 캡슐화하기`
-- [`모듈로 캡슐화하기`](./ch13_module.md) by 진영
-- [`모듈로 캡슐화하기`](./ch13.module.md) by 임택
+- [`모듈로 캡슐화하기`](./ch13.Module.Jinyoung.md) by 진영
+- [`모듈로 캡슐화하기`](./ch13.Module.Taek.md) by 임택
   - [서비스워커 정체가 뭐니?](https://b.limminho.com/archives/1384) from 임택
 
 
